@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @article.name %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @article.content %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @article.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
+<h2>Comment </h2>
+<ul>
+  <% @article.comments.each do |comment| %>
+    <li>
+      <p><%= comment.content %></p>
+      <p><%= comment.user_email %></p>
+    </li>
+  <% end %>
+</ul>
+<%= simple_form_for([@article, @comment]) do |f| %>
+  <%= f.input :content, label: "Comment" %>
+  <%= f.button :submit, "Submit" %>
+<% end %>
